@@ -1,0 +1,19 @@
+# Python junk
+__pycache__/
+*.pyc
+
+# Environments
+venv/
+env/
+
+# Secrets
+.env
+.env.*
+
+# IDE folders
+.vscode/
+.idea/
+
+# Model files
+*.pkl
+*.joblib
