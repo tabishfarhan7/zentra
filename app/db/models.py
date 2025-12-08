@@ -10,6 +10,9 @@ class User(Base):
     email = Column(String, unique=True, index=True, nullable=False)
     hashed_password = Column(String, nullable=False) 
     predictions = relationship("PredictionHistory", back_populates="user")
+    profile = relationship("UserProfile", back_populates="user", uselist=False)
+    health_profile = relationship("UserHealthProfile", back_populates="user", uselist=False)
+    
     
     
 class PredictionHistory(Base):
