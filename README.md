@@ -1,8 +1,8 @@
 <div align="center">
 
-# 🏥 Zentra ML API
+# 🚀 Zentra AI Platform
 
-### *AI-Powered Health Analytics & Obesity Prediction Platform*
+### *Intelligent AI Assistant with ML-Powered Analytics*
 
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.109.0-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
@@ -10,134 +10,25 @@
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-1.4.0-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
 [![JWT](https://img.shields.io/badge/JWT-Authentication-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white)](https://jwt.io/)
 
-**A comprehensive backend API for health analytics featuring JWT authentication, user profile management, and ML-powered obesity prediction using Random Forest classification.**
-
-[Features](#-features) • [Tech Stack](#-tech-stack) • [Quick Start](#-quick-start) • [API Docs](#-api-endpoints) • [ML Pipeline](#-ml-prediction-pipeline)
+**A comprehensive AI platform backend featuring JWT authentication, user profile management, and ML-powered analytics using Random Forest classification.**
 
 </div>
-
----
-
-## 📋 Table of Contents
-
-- [Overview](#-overview)
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Project Structure](#-project-structure)
-- [Quick Start](#-quick-start)
-- [API Endpoints](#-api-endpoints)
-- [ML Prediction Pipeline](#-ml-prediction-pipeline)
-- [Database Schema](#-database-schema)
-- [Usage Examples](#-usage-examples)
-- [Future Enhancements](#-future-enhancements)
 
 ---
 
 ## 🌟 Overview
 
-**Zentra** is a production-ready health analytics platform that combines modern web technologies with machine learning to provide intelligent obesity risk assessment. The backend is built with FastAPI and offers:
+**Zentra** is a production-ready AI platform backend built with FastAPI, designed to power intelligent chat assistants and ML-driven analytics. The system provides a robust foundation for building conversational AI applications with secure authentication, user management, and machine learning capabilities.
 
-- 🔐 **Secure Authentication** - JWT-based auth with password reset functionality
-- 👤 **User Profile Management** - Comprehensive health profile tracking with BMI calculation
-- 🤖 **ML Predictions** - Random Forest model trained on 2000+ samples with 95%+ accuracy
-- 📊 **Prediction History** - Automatic tracking of all predictions with timestamps
-- 🗄️ **PostgreSQL Database** - Robust relational database with SQLAlchemy ORM
-- 📧 **Email Integration** - Password reset emails via Resend API
-- 📚 **Interactive API Docs** - Beautiful Scalar documentation
+### Core Capabilities
 
----
-
-## ✨ Features
-
-### 🔐 Authentication & Security
-
-| Feature | Description |
-|---------|-------------|
-| **User Registration** | Email-based signup with bcrypt password hashing |
-| **JWT Authentication** | Secure token-based authentication with configurable expiry |
-| **Password Reset** | Token-based password reset flow with email notifications |
-| **Protected Routes** | Middleware-based route protection with current user injection |
-| **Session Management** | Stateless authentication with JWT tokens |
-
-### 👤 User Profile Management
-
-| Feature | Description |
-|---------|-------------|
-| **Profile Creation** | Create comprehensive health profiles with 15+ metrics |
-| **Profile Updates** | Partial updates with automatic BMI recalculation |
-| **BMI Calculation** | Automatic BMI computation from height and weight |
-| **Profile Retrieval** | Get current user's complete health profile |
-| **Data Validation** | Pydantic schemas ensure data integrity |
-
-**Profile Metrics Tracked:**
-- 📏 Demographics: Gender, Age, Height, Weight, BMI
-- 🍽️ Dietary: Vegetable intake, meal frequency, calorie tracking, high-calorie food consumption
-- 🏃 Activity: Physical activity hours, screen time, transportation mode
-- 🧬 Health History: Family overweight history
-- 🚬 Lifestyle: Smoking, alcohol consumption, snacking frequency, water intake
-
-### 🤖 ML-Powered Obesity Prediction
-
-| Feature | Description |
-|---------|-------------|
-| **Random Forest Classifier** | Pre-trained model with 95%+ accuracy |
-| **7 Obesity Categories** | Insufficient Weight, Normal, Overweight I-II, Obesity I-III |
-| **15+ Input Features** | Comprehensive lifestyle and health metrics |
-| **Automated Preprocessing** | Label encoding, robust scaling, feature engineering |
-| **Prediction History** | All predictions saved with input data and timestamps |
-| **Real-time Inference** | Fast predictions using joblib-serialized models |
-
-### 🗄️ Database Management
-
-| Model | Description |
-|-------|-------------|
-| **User** | Email, hashed password, relationships to profiles and predictions |
-| **UserHealthProfile** | Complete health profile with 15+ metrics and BMI |
-| **PredictionHistory** | Prediction logs with input data, results, and timestamps |
-| **PasswordResetToken** | Temporary tokens with expiry for password resets |
-
----
-
-## 🛠️ Tech Stack
-
-<div align="center">
-
-### Core Technologies
-
-| Layer | Technology | Version | Purpose |
-|-------|-----------|---------|---------|
-| **Web Framework** | FastAPI | 0.109.0 | High-performance async API framework |
-| **Server** | Uvicorn | 0.27.0 | ASGI server with auto-reload |
-| **Database** | PostgreSQL | Latest | Production-grade relational database |
-| **ORM** | SQLAlchemy | 2.0.25 | Python SQL toolkit and ORM |
-| **Migrations** | Alembic | 1.13.1 | Database migration management |
-
-### Security & Authentication
-
-| Technology | Version | Purpose |
-|-----------|---------|---------|
-| **JWT** | python-jose 3.3.0 | JSON Web Token implementation |
-| **Password Hashing** | passlib[bcrypt] 1.7.4 | Secure password hashing |
-| **Email Service** | Resend 0.8.0 | Transactional email API |
-
-### Machine Learning
-
-| Technology | Version | Purpose |
-|-----------|---------|---------|
-| **ML Framework** | scikit-learn 1.4.0 | Random Forest classifier |
-| **Data Processing** | pandas 2.2.0 | Data manipulation and analysis |
-| **Numerical Computing** | numpy 1.26.3 | Array operations and math |
-| **Model Serialization** | joblib 1.3.2 | Efficient model persistence |
-
-### Data Validation & Docs
-
-| Technology | Version | Purpose |
-|-----------|---------|---------|
-| **Validation** | Pydantic 2.5.3 | Data validation and settings |
-| **API Docs** | Scalar FastAPI 1.0.3 | Beautiful interactive documentation |
-| **Email Validation** | email-validator 2.1.0 | Email format validation |
-
-</div>
+- **JWT Authentication** - Secure token-based authentication with password reset functionality
+- **User Profile System** - Comprehensive user data management with automatic validation
+- **ML Inference Pipeline** - Random Forest classifier with 95%+ accuracy for predictive analytics
+- **Prediction History** - Automatic tracking and storage of all ML predictions
+- **PostgreSQL Database** - Production-grade relational database with SQLAlchemy ORM
+- **Email Integration** - Transactional emails via Resend API
+- **Interactive API Documentation** - Auto-generated Scalar documentation
 
 ---
 
@@ -202,25 +93,119 @@ zentra/
 
 ---
 
+## 💡 Key Features
+
+<table>
+<tr>
+<td width="50%">
+
+### 🔐 Authentication & Security
+- Email-based user registration
+- JWT token generation and validation
+- Secure password hashing with bcrypt
+- Token-based password reset flow
+- Protected route middleware
+- Stateless session management
+
+</td>
+<td width="50%">
+
+### 👤 User Management
+- Create and update user profiles
+- Automatic data validation
+- BMI auto-calculation
+- Profile retrieval endpoints
+- Comprehensive user metrics (15+ fields)
+- Timestamp tracking
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### 🤖 Machine Learning
+- Random Forest classifier (95%+ accuracy)
+- 7-category classification system
+- Real-time inference pipeline
+- Automated preprocessing (encoding, scaling)
+- Model artifact serialization
+- Prediction history logging
+
+</td>
+<td width="50%">
+
+### 🗄️ Database Architecture
+- PostgreSQL with SQLAlchemy ORM
+- User authentication model
+- User health profile model
+- Prediction history model
+- Password reset token model
+- Alembic migration support
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🛠️ Technology Stack
+
+### Backend Framework
+| Component | Technology | Version |
+|-----------|-----------|---------|
+| Web Framework | FastAPI | 0.109.0 |
+| ASGI Server | Uvicorn | 0.27.0 |
+| API Documentation | Scalar FastAPI | 1.0.3 |
+
+### Database & ORM
+| Component | Technology | Version |
+|-----------|-----------|---------|
+| Database | PostgreSQL | Latest |
+| ORM | SQLAlchemy | 2.0.25 |
+| Migrations | Alembic | 1.13.1 |
+| Driver | psycopg2-binary | 2.9.9 |
+
+### Security
+| Component | Technology | Version |
+|-----------|-----------|---------|
+| JWT | python-jose[cryptography] | 3.3.0 |
+| Password Hashing | passlib[bcrypt] | 1.7.4 |
+| Email Service | Resend | 0.8.0 |
+
+### Machine Learning
+| Component | Technology | Version |
+|-----------|-----------|---------|
+| ML Framework | scikit-learn | 1.4.0 |
+| Data Processing | pandas | 2.2.0 |
+| Numerical Computing | numpy | 1.26.3 |
+| Model Serialization | joblib | 1.3.2 |
+
+### Data Validation
+| Component | Technology | Version |
+|-----------|-----------|---------|
+| Schema Validation | Pydantic | 2.5.3 |
+| Settings Management | pydantic-settings | 2.1.0 |
+| Email Validation | email-validator | 2.1.0 |
+
+---
+
 ## 🚀 Quick Start
 
 ### Prerequisites
 
-- **Python** 3.8 or higher
-- **PostgreSQL** database server
-- **pip** package manager
-- **Virtual environment** (recommended)
+- Python 3.8+
+- PostgreSQL database
+- pip package manager
+- Virtual environment (recommended)
 
-### Installation
+### Installation Steps
 
-#### 1️⃣ Clone & Navigate
-
+**1. Navigate to Backend Directory**
 ```bash
 cd backend
 ```
 
-#### 2️⃣ Create Virtual Environment
-
+**2. Create Virtual Environment**
 ```bash
 # Windows
 python -m venv venv
@@ -231,101 +216,86 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-#### 3️⃣ Install Dependencies
-
+**3. Install Dependencies**
 ```bash
 pip install -r requirements.txt
 ```
 
-#### 4️⃣ Configure Environment Variables
+**4. Configure Environment Variables**
 
-Create a `.env` file in the `backend/` directory:
+Create `.env` file in `backend/` directory:
 
 ```env
-# Application Settings
-PROJECT_NAME="Zentra ML API"
+# Application
+PROJECT_NAME="Zentra AI Platform"
 ENVIRONMENT="development"
 APP_HOST="127.0.0.1"
 APP_PORT=8000
 
-# Security Configuration
-SECRET_KEY="your-secret-key-here-generate-with-openssl-rand-hex-32"
+# Security
+SECRET_KEY="your-secret-key-here"  # Generate with: openssl rand -hex 32
 ALGORITHM="HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES=60
 
-# Database Configuration
+# Database
 DATABASE_URL="postgresql://username:password@localhost:5432/zentra_db"
 
-# Email Service (Optional - for password reset)
+# Email (Optional)
 RESEND_API_KEY="your-resend-api-key"
 ```
 
-> **💡 Tip:** Generate a secure secret key using:
-> ```bash
-> openssl rand -hex 32
-> ```
-
-#### 5️⃣ Initialize Database
-
+**5. Initialize Database**
 ```bash
-# Option 1: Automatic table creation on first run
+# Automatic table creation
 python create_tables.py
 
-# Option 2: Use Alembic for migrations (recommended for production)
+# OR use Alembic migrations (production)
 alembic upgrade head
 ```
 
-#### 6️⃣ Run the Application
-
+**6. Run Application**
 ```bash
 uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
 ```
 
-#### 7️⃣ Access API Documentation
-
+**7. Access API Documentation**
 - **Scalar Docs**: http://127.0.0.1:8000/scalar
-- **OpenAPI JSON**: http://127.0.0.1:8000/openapi.json
+- **OpenAPI Schema**: http://127.0.0.1:8000/openapi.json
 
 ---
 
-## 🚦 API Endpoints
+## 🔌 API Endpoints
 
 ### 🔐 Authentication Routes (`/auth`)
 
-| Method | Endpoint | Description | Auth Required | Request Body |
-|--------|----------|-------------|---------------|--------------|
-| `POST` | `/auth/signup` | Register new user | ❌ | `{ email, password }` |
-| `POST` | `/auth/login` | Login & get JWT token | ❌ | `{ email, password }` |
-| `POST` | `/auth/request-password-reset` | Request password reset | ❌ | `{ email }` |
-| `POST` | `/auth/reset-password` | Complete password reset | ❌ | `{ token, new_password }` |
-| `GET` | `/auth/me` | Get current user info | ✅ | - |
+| Method | Endpoint | Description | Auth | Body |
+|--------|----------|-------------|------|------|
+| POST | `/auth/signup` | Register new user | No | `{ email, password }` |
+| POST | `/auth/login` | Get JWT token | No | `{ email, password }` |
+| POST | `/auth/request-password-reset` | Request reset token | No | `{ email }` |
+| POST | `/auth/reset-password` | Reset password | No | `{ token, new_password }` |
+| GET | `/auth/me` | Get current user | Yes | - |
 
 ### 👤 User Profile Routes (`/profile`)
 
-| Method | Endpoint | Description | Auth Required | Request Body |
-|--------|----------|-------------|---------------|--------------|
-| `POST` | `/profile/create` | Create user health profile | ✅ | Full profile data (15+ fields) |
-| `PUT` | `/profile/update` | Update existing profile | ✅ | Partial profile data |
-| `GET` | `/profile/me` | Get current user's profile | ✅ | - |
+| Method | Endpoint | Description | Auth | Body |
+|--------|----------|-------------|------|------|
+| POST | `/profile/create` | Create user profile | Yes | Full profile data |
+| PUT | `/profile/update` | Update profile | Yes | Partial profile data |
+| GET | `/profile/me` | Get user profile | Yes | - |
 
-**Profile Fields:**
-- `gender`, `age`, `height_m`, `weight_kg` (auto-calculates BMI)
-- `family_overweight_history`, `high_calorie_food`
-- `vegetable_intake_freq`, `main_meals_per_day`, `snack_frequency`
-- `smokes`, `water_intake_liters`, `calorie_tracking`
-- `physical_activity_hours`, `screentime_hours`
-- `alcohol_consumption`, `travel_mode`
+**Profile Fields**: `gender`, `age`, `height_m`, `weight_kg`, `family_overweight_history`, `high_calorie_food`, `vegetable_intake_freq`, `main_meals_per_day`, `snack_frequency`, `smokes`, `water_intake_liters`, `calorie_tracking`, `physical_activity_hours`, `screentime_hours`, `alcohol_consumption`, `travel_mode`
 
 ### 🤖 Prediction Routes (`/predict`)
 
-| Method | Endpoint | Description | Auth Required | Request Body |
-|--------|----------|-------------|---------------|--------------|
-| `POST` | `/predict/` | Predict obesity level | ✅ | Same as profile fields |
+| Method | Endpoint | Description | Auth | Body |
+|--------|----------|-------------|------|------|
+| POST | `/predict/` | Get ML prediction | Yes | Same as profile fields |
 
-**Prediction Output:**
+**Response Format**:
 ```json
 {
-  "prediction": "Obesity_Type_I",
+  "prediction": "Category_Name",
   "confidence": 0.87,
   "bmi": 27.55,
   "saved_to_history": true
@@ -336,63 +306,49 @@ uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| `GET` | `/scalar` | Interactive Scalar API documentation |
-| `GET` | `/docs` | Alternative Swagger UI (if enabled) |
-| `GET` | `/openapi.json` | OpenAPI schema JSON |
+| GET | `/scalar` | Interactive API docs |
+| GET | `/openapi.json` | OpenAPI schema |
 
 ---
 
-## 🤖 ML Prediction Pipeline
+## 🤖 ML Pipeline Architecture
 
-### Model Architecture
+### Inference Flow
 
 ```
-Input Features (15)
+Input Data (15 features)
     ↓
-Label Encoding (Categorical Features)
+Label Encoding (categorical variables)
     ↓
-Robust Scaling (Numerical Features)
+Robust Scaling (numerical features)
     ↓
-Random Forest Classifier (100 trees)
+Random Forest Classifier (100 estimators)
     ↓
-Output: 7 Obesity Categories
+Prediction Output (7 categories)
 ```
 
-### Obesity Categories
+### Model Specifications
 
-| Category | Description | BMI Range |
-|----------|-------------|-----------|
-| `Insufficient_Weight` | Underweight | < 18.5 |
-| `Normal_Weight` | Healthy weight | 18.5 - 24.9 |
-| `Overweight_Level_I` | Slightly overweight | 25.0 - 27.4 |
-| `Overweight_Level_II` | Moderately overweight | 27.5 - 29.9 |
-| `Obesity_Type_I` | Class I obesity | 30.0 - 34.9 |
-| `Obesity_Type_II` | Class II obesity | 35.0 - 39.9 |
-| `Obesity_Type_III` | Class III obesity (severe) | ≥ 40.0 |
-
-### Model Performance
-
+- **Algorithm**: Random Forest Classifier
+- **Estimators**: 100 trees
 - **Accuracy**: 95%+ on test set
-- **Training Samples**: 2000+ synthetic + real data
-- **Features**: 15 lifestyle and health metrics
-- **Algorithm**: Random Forest with 100 estimators
-- **Preprocessing**: Label encoding + Robust scaling
+- **Training Data**: 2000+ samples
+- **Features**: 15 input variables
+- **Output Classes**: 7 categories
 
-### Trained Artifacts
+### Serialized Artifacts
 
-| File | Size | Description |
-|------|------|-------------|
-| `random_forest_model.pkl` | 7.9 MB | Trained Random Forest classifier |
-| `label_encoders.pkl` | 1.4 KB | Encoders for categorical features |
-| `robust_scaler.pkl` | 1.0 KB | Scaler for numerical features |
-| `target_label_encoder.pkl` | 608 B | Encoder for target labels |
-| `feature_columns.pkl` | 517 B | Feature column names |
+| File | Size | Purpose |
+|------|------|---------|
+| `random_forest_model.pkl` | 7.9 MB | Trained classifier |
+| `label_encoders.pkl` | 1.4 KB | Categorical encoders |
+| `robust_scaler.pkl` | 1.0 KB | Feature scaler |
+| `target_label_encoder.pkl` | 608 B | Target encoder |
+| `feature_columns.pkl` | 517 B | Feature names |
 
 ---
 
 ## 🗄️ Database Schema
-
-### Entity Relationship Diagram
 
 ```
 ┌─────────────────┐
@@ -416,18 +372,7 @@ Output: 7 Obesity Categories
 │ height_m             │      │ created_at               │
 │ weight_kg            │      └──────────────────────────┘
 │ bmi (computed)       │
-│ family_overweight... │
-│ high_calorie_food    │
-│ vegetable_intake...  │
-│ main_meals_per_day   │
-│ snack_frequency      │
-│ smokes               │
-│ water_intake_liters  │
-│ calorie_tracking     │
-│ physical_activity... │
-│ screentime_hours     │
-│ alcohol_consumption  │
-│ travel_mode          │
+│ [15+ health fields]  │
 │ updated_at           │
 └──────────────────────┘
 ```
@@ -439,40 +384,21 @@ Output: 7 Obesity Categories
 ### 1. User Registration & Authentication
 
 ```bash
-# Register a new user
+# Register
 curl -X POST "http://127.0.0.1:8000/auth/signup" \
   -H "Content-Type: application/json" \
-  -d '{
-    "email": "john.doe@example.com",
-    "password": "SecurePass123!"
-  }'
+  -d '{"email": "user@example.com", "password": "SecurePass123!"}'
 
-# Response
-{
-  "id": 1,
-  "email": "john.doe@example.com"
-}
-```
-
-```bash
-# Login to get JWT token
+# Login
 curl -X POST "http://127.0.0.1:8000/auth/login" \
   -H "Content-Type: application/json" \
-  -d '{
-    "email": "john.doe@example.com",
-    "password": "SecurePass123!"
-  }'
-
-# Response
-{
-  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-  "token_type": "bearer"
-}
+  -d '{"email": "user@example.com", "password": "SecurePass123!"}'
 ```
 
-### 2. Create User Health Profile
+### 2. Profile Management
 
 ```bash
+# Create Profile
 curl -X POST "http://127.0.0.1:8000/profile/create" \
   -H "Authorization: Bearer YOUR_JWT_TOKEN" \
   -H "Content-Type: application/json" \
@@ -495,35 +421,14 @@ curl -X POST "http://127.0.0.1:8000/profile/create" \
     "travel_mode": "Car"
   }'
 
-# Response
-{
-  "id": 1,
-  "user_id": 1,
-  "gender": "Male",
-  "age": 28,
-  "height_m": 1.75,
-  "weight_kg": 82,
-  "bmi": 26.78,
-  ...
-}
-```
-
-### 3. Update Profile
-
-```bash
-# Update only specific fields
+# Update Profile
 curl -X PUT "http://127.0.0.1:8000/profile/update" \
   -H "Authorization: Bearer YOUR_JWT_TOKEN" \
   -H "Content-Type: application/json" \
-  -d '{
-    "weight_kg": 78,
-    "physical_activity_hours": 3
-  }'
-
-# BMI is automatically recalculated
+  -d '{"weight_kg": 78, "physical_activity_hours": 3}'
 ```
 
-### 4. Get Obesity Prediction
+### ML Prediction
 
 ```bash
 curl -X POST "http://127.0.0.1:8000/predict/" \
@@ -547,104 +452,73 @@ curl -X POST "http://127.0.0.1:8000/predict/" \
     "alcohol_consumption": "no",
     "travel_mode": "Walking"
   }'
-
-# Response
-{
-  "prediction": "Normal_Weight",
-  "bmi": 25.91,
-  "confidence": 0.92,
-  "saved_to_history": true
-}
-```
-
-### 5. Password Reset Flow
-
-```bash
-# Step 1: Request password reset
-curl -X POST "http://127.0.0.1:8000/auth/request-password-reset" \
-  -H "Content-Type: application/json" \
-  -d '{"email": "john.doe@example.com"}'
-
-# User receives email with reset token
-
-# Step 2: Reset password with token
-curl -X POST "http://127.0.0.1:8000/auth/reset-password" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "token": "abc123def456",
-    "new_password": "NewSecurePass456!"
-  }'
 ```
 
 ---
 
-## 🔮 Future Enhancements
+## 🔮 Roadmap
 
 ### Planned Features
 
-- [ ] **Prediction History Endpoint** - Retrieve user's past predictions with filtering
-- [ ] **Analytics Dashboard** - Visualize BMI trends and prediction history
-- [ ] **LLM Health Assistant** - AI-powered health recommendations using GPT-4
-- [ ] **Personalized Recommendations** - Custom diet and exercise plans
-- [ ] **Weekly Health Reports** - Email summaries with insights
-- [ ] **Multi-Model Support** - Add Logistic Regression, XGBoost, Neural Networks
-- [ ] **Batch Predictions** - Process multiple predictions in one request
-- [ ] **Export Functionality** - Download prediction history as CSV/PDF
-- [ ] **Social Features** - Share progress with friends and family
-- [ ] **Mobile App Integration** - React Native or Flutter frontend
-- [ ] **Webhook Support** - Real-time notifications for predictions
-- [ ] **Rate Limiting** - API rate limiting with Redis
-- [ ] **Caching Layer** - Redis cache for frequent queries
-- [ ] **Monitoring** - Prometheus + Grafana dashboards
-- [ ] **CI/CD Pipeline** - Automated testing and deployment
+**AI & Chat Capabilities**
+- [ ] LLM Integration (GPT-4, Claude, Gemini)
+- [ ] Conversational AI Assistant
+- [ ] Context-aware chat responses
+- [ ] Multi-turn conversation handling
+- [ ] Chat history persistence
 
-### Potential Integrations
+**Analytics & Insights**
+- [ ] Prediction history retrieval API
+- [ ] Analytics dashboard backend
+- [ ] Data visualization endpoints
+- [ ] Trend analysis algorithms
+- [ ] Personalized recommendations engine
 
-- **Fitness Trackers**: Fitbit, Apple Health, Google Fit
-- **Nutrition APIs**: Nutritionix, Edamam
-- **Telemedicine**: Integration with healthcare providers
-- **Insurance**: Health insurance risk assessment
+**Infrastructure**
+- [ ] Redis caching layer
+- [ ] Rate limiting middleware
+- [ ] WebSocket support for real-time chat
+- [ ] Batch prediction endpoints
+- [ ] Export functionality (CSV/PDF)
+
+**Integrations**
+- [ ] Third-party API connectors
+- [ ] Webhook support
+- [ ] OAuth2 providers (Google, GitHub)
+- [ ] Mobile app backend support
+
+**DevOps**
+- [ ] Docker containerization
+- [ ] CI/CD pipeline
+- [ ] Prometheus monitoring
+- [ ] Grafana dashboards
+- [ ] Automated testing suite
 
 ---
 
-## 🧪 Development & Testing
+## 🧪 Development
 
-### Running Tests
+### Testing
 
 ```bash
-# Install test dependencies
 pip install pytest pytest-asyncio httpx
-
-# Run all tests
 pytest
-
-# Run with coverage
 pytest --cov=app --cov-report=html
 ```
 
 ### Database Migrations
 
 ```bash
-# Create a new migration
-alembic revision --autogenerate -m "Add new field"
-
-# Apply migrations
+alembic revision --autogenerate -m "Description"
 alembic upgrade head
-
-# Rollback migration
 alembic downgrade -1
 ```
 
 ### Code Quality
 
 ```bash
-# Format code with black
 black app/
-
-# Lint with flake8
 flake8 app/
-
-# Type checking with mypy
 mypy app/
 ```
 
@@ -652,34 +526,23 @@ mypy app/
 
 ## 📄 License
 
-This project is part of the **Zentra Health Analytics Platform**.  
 © 2024 Fahad Khan. All rights reserved.
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please follow these guidelines:
-
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+2. Create feature branch (`git checkout -b feature/name`)
+3. Commit changes (`git commit -m 'Add feature'`)
+4. Push to branch (`git push origin feature/name`)
+5. Open Pull Request
 
-### Code Standards
-
-- Follow PEP 8 style guidelines
-- Write docstrings for all functions
-- Add type hints where applicable
-- Ensure all tests pass before submitting PR
-- Update documentation for new features
+**Code Standards**: PEP 8, type hints, docstrings, tests required
 
 ---
 
-## 📞 Support
-
-For questions or issues:
+## 📞 Contact
 
 - **Email**: fahad.khan@example.com
 - **GitHub Issues**: [Create an issue](https://github.com/yourusername/zentra/issues)
@@ -687,23 +550,13 @@ For questions or issues:
 
 ---
 
-## 🙏 Acknowledgments
-
-- **FastAPI** - For the amazing web framework
-- **scikit-learn** - For powerful ML tools
-- **PostgreSQL** - For robust database management
-- **Obesity Dataset** - UCI Machine Learning Repository
-
----
-
 <div align="center">
 
-### ⭐ Star this repo if you find it helpful!
+**Built with FastAPI, PostgreSQL, and Machine Learning**
 
-**Built with ❤️ by Fahad Khan using FastAPI, PostgreSQL, and Machine Learning**
-
-![Python](https://img.shields.io/badge/Made%20with-Python-blue?style=flat-square&logo=python)
-![FastAPI](https://img.shields.io/badge/Powered%20by-FastAPI-009688?style=flat-square&logo=fastapi)
-![ML](https://img.shields.io/badge/ML-scikit--learn-F7931E?style=flat-square&logo=scikit-learn)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=flat-square&logo=postgresql&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat-square&logo=scikit-learn&logoColor=white)
 
 </div>
