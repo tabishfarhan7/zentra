@@ -38,9 +38,10 @@ def create_user(db: Session, user_data: UserCreate):
 # -------------------------------------
 # 2) LOGIN USER
 # -------------------------------------
-def authenticate_user(db: Session, user_data: UserLogin):
-    # find user
-    user = db.query(models.User).filter(models.User.email == user_data.email).first()
+def authenticate_user(db: Session, user_data):
+    # find user - username field contains the email for OAuth2PasswordRequestForm
+    email = user_data.username if hasattr(user_data, 'username') else user_data.email
+    user = db.query(models.User).filter(models.User.email == email).first()
 
     if not user:
         raise HTTPException(

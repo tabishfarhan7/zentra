@@ -10,7 +10,6 @@ app.include_router(profile_router)
 app.include_router(prediction_router)
 
 
-
 @app.get("/scalar",include_in_schema=False)
 def get_scalar_api():
     return get_scalar_api_reference(

@@ -1,5 +1,6 @@
 import datetime
 from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 
 
@@ -23,8 +24,8 @@ def signup(user_data: UserCreate, db:Session = Depends(get_db)): # type: ignore
     
     
 @router.post("/login",response_model=Token)
-def login(user_data: UserLogin, db:Session = Depends(get_db)): # type: ignore
-    token=authenticate_user(db, user_data) # type: ignore
+def login(form_data: OAuth2PasswordRequestForm = Depends(), db:Session = Depends(get_db)): # type: ignore
+    token=authenticate_user(db, form_data) # type: ignore
     return token # type: ignore
 
 @router.post("/request-password-reset")

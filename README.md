@@ -544,7 +544,7 @@ mypy app/
 
 ## 📞 Contact
 
-- **Email**: fahad.khan@example.com
+- **Email**: fahadkhanf715@gmail.com
 - **GitHub Issues**: [Create an issue](https://github.com/yourusername/zentra/issues)
 - **Documentation**: http://127.0.0.1:8000/scalar
 
