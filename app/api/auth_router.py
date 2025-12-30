@@ -1,3 +1,4 @@
+from IPython.terminal.interactiveshell import black_reformat_handler
 import datetime
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
@@ -7,9 +8,9 @@ from sqlalchemy.orm import Session
 from app.db.database import get_db #type: ignore
 from app.schemas.auth import PasswordResetComplete, PasswordResetRequest, Token, UserCreate, UserLogin, UserResponse #type: ignore
 from app.services.auth_service import create_user, authenticate_user
-from app.core.dependencies import get_current_user
+from app.core.dependencies import get_current_user, oauth2_scheme
 from app.db import models #type: ignore
-from app.core.security import generate_password_reset_token, token_expiry
+from app.core.security import generate_password_reset_token, token_expiry, blacklist_token
 from app.core.hashing import Hash
 from app.core.email_utils import send_password_reset_email
 
@@ -27,6 +28,11 @@ def signup(user_data: UserCreate, db:Session = Depends(get_db)): # type: ignore
 def login(form_data: OAuth2PasswordRequestForm = Depends(), db:Session = Depends(get_db)): # type: ignore
     token=authenticate_user(db, form_data) # type: ignore
     return token # type: ignore
+
+@router.post("/logout")
+def logout(token:str=Depends(oauth2_scheme)):
+    blacklist_token(token)
+    return {"message":"Logged out successfully"}
 
 @router.post("/request-password-reset")
 def request_password_reset(data: PasswordResetRequest, db: Session = Depends(get_db)):

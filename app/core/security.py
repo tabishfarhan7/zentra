@@ -1,9 +1,11 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from jose import jwt # type: ignore
 from passlib.context import CryptContext #type: ignore
 import secrets
 
+from app.core.redis import redis_client
 from app.core.config import settings #type: ignore
+from app.core.redis import redis_client
 
 
 
@@ -47,4 +49,30 @@ def generate_password_reset_token() -> str:
 
 def token_expiry(minutes: int = 15):
     return datetime.utcnow() + timedelta(minutes=minutes)
-    
+
+
+# -----------------------------
+# 3) Token Blacklisting
+# -----------------------------
+def blacklist_token(token: str):
+    payload = jwt.decode(
+        token,
+        settings.SECRET_KEY,
+        algorithms=[settings.ALGORITHM]
+    )
+
+    exp=payload.get("exp")
+
+    if not exp:
+        return
+
+    expire_time=exp- int(datetime.utcnow().timestamp())
+    if expire_time>0:
+        redis_client.setex(
+            name=f"blacklist:{token}",
+            time=expire_time,
+            value="true"
+        )
+
+def is_token_blacklisted(token: str) -> bool:
+    return redis_client.get(f"blacklist:{token}") is not None
