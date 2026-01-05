@@ -560,3 +560,4 @@ mypy app/
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat-square&logo=scikit-learn&logoColor=white)
 
 </div>
+
