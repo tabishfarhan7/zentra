@@ -27,5 +27,8 @@ class Settings(BaseSettings):
     REDIS_HOST: str="localhost"
     REDIS_PORT: int=6379
 
+    # ML Models
+    MODEL_DOWNLOAD_URL: str = ""  # Optional: URL to download ML models
+
 
 settings = Settings() #type: ignore
