@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy.orm import Session
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select
 
 from app.core.dependencies import get_current_user
 from app.db.database import get_db
@@ -22,16 +23,19 @@ def calculate_bmi(weight_kg: float, height_m: float):
 # CREATE USER PROFILE
 # -----------------------------
 @router.post("/create", response_model=ProfileResponse)
-def create_profile(
+async def create_profile(
     data: ProfileCreateRequest,
-    db: Session = Depends(get_db),
+    db: AsyncSession = Depends(get_db),
     current_user: models.User = Depends(get_current_user)
 ):
 
     # Check if profile already exists
-    existing = db.query(models.UserHealthProfile).filter(
-        models.UserHealthProfile.user_id == current_user.id
-    ).first()
+    result = await db.execute(
+        select(models.UserHealthProfile).filter(
+            models.UserHealthProfile.user_id == current_user.id
+        )
+    )
+    existing = result.scalar_one_or_none()
 
     if existing:
         raise HTTPException(
@@ -65,8 +69,8 @@ def create_profile(
     )
 
     db.add(profile)
-    db.commit()
-    db.refresh(profile)
+    await db.commit()
+    await db.refresh(profile)
 
     return profile
 
@@ -75,15 +79,18 @@ def create_profile(
 # UPDATE USER PROFILE
 # -----------------------------
 @router.put("/update", response_model=ProfileResponse)
-def update_profile(
+async def update_profile(
     data: ProfileUpdateRequest,
-    db: Session = Depends(get_db),
+    db: AsyncSession = Depends(get_db),
     current_user: models.User = Depends(get_current_user)
 ):
 
-    profile = db.query(models.UserHealthProfile).filter(
-        models.UserHealthProfile.user_id == current_user.id
-    ).first()
+    result = await db.execute(
+        select(models.UserHealthProfile).filter(
+            models.UserHealthProfile.user_id == current_user.id
+        )
+    )
+    profile = result.scalar_one_or_none()
 
     if not profile:
         raise HTTPException(status_code=404, detail="Profile not found")
@@ -98,8 +105,8 @@ def update_profile(
     if "weight_kg" in update_data or "height_m" in update_data:
         profile.bmi = calculate_bmi(profile.weight_kg, profile.height_m)
 
-    db.commit()
-    db.refresh(profile)
+    await db.commit()
+    await db.refresh(profile)
 
     return profile
 
@@ -108,15 +115,19 @@ def update_profile(
 # GET CURRENT USER PROFILE
 # -----------------------------
 @router.get("/me", response_model=ProfileResponse)
-def get_profile(
-    db: Session = Depends(get_db),
+async def get_profile(
+    db: AsyncSession = Depends(get_db),
     current_user: models.User = Depends(get_current_user)
 ):
-    profile = db.query(models.UserHealthProfile).filter(
-        models.UserHealthProfile.user_id == current_user.id
-    ).first()
+    result = await db.execute(
+        select(models.UserHealthProfile).filter(
+            models.UserHealthProfile.user_id == current_user.id
+        )
+    )
+    profile = result.scalar_one_or_none()
 
     if not profile:
         raise HTTPException(status_code=404, detail="Profile not created yet")
 
     return profile
+

@@ -1,4 +1,5 @@
-from sqlalchemy.orm import Session
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select
 from fastapi import HTTPException, status
 
 from app.db import models #type: ignore
@@ -7,11 +8,15 @@ from app.core.security import hash_password, verify_password, create_access_toke
 
 
 # -------------------------------------
-# 1) CREATE USER (SIGNUP)
+# 1) CREATE USER (SIGNUP) - ASYNC
 # -------------------------------------
-def create_user(db: Session, user_data: UserCreate):
+async def create_user(db: AsyncSession, user_data: UserCreate):
     # check if user already exists
-    existing = db.query(models.User).filter(models.User.email == user_data.email).first() # type: ignore
+    result = await db.execute(
+        select(models.User).filter(models.User.email == user_data.email)
+    )
+    existing = result.scalar_one_or_none()
+    
     if existing:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -29,19 +34,23 @@ def create_user(db: Session, user_data: UserCreate):
 
     # save to DB
     db.add(new_user)
-    db.commit()
-    db.refresh(new_user)
+    await db.commit()
+    await db.refresh(new_user)
 
     return new_user
 
 
 # -------------------------------------
-# 2) LOGIN USER
+# 2) LOGIN USER - ASYNC
 # -------------------------------------
-def authenticate_user(db: Session, user_data):
+async def authenticate_user(db: AsyncSession, user_data):
     # find user - username field contains the email for OAuth2PasswordRequestForm
     email = user_data.username if hasattr(user_data, 'username') else user_data.email
-    user = db.query(models.User).filter(models.User.email == email).first()
+    
+    result = await db.execute(
+        select(models.User).filter(models.User.email == email)
+    )
+    user = result.scalar_one_or_none()
 
     if not user:
         raise HTTPException(
@@ -60,3 +69,4 @@ def authenticate_user(db: Session, user_data):
     token = create_access_token({"sub": user.email})
 
     return {"access_token": token, "token_type": "bearer"}
+

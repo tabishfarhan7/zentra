@@ -1,5 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select
+
 from app.schemas.predict import PredictionRequest, PredictionResponse
 from app.db.database import get_db
 from app.core.dependencies import get_current_user
@@ -10,16 +12,17 @@ from app.ml.inference_pipeline import predict_obesity
 router = APIRouter(prefix="/predict", tags=["Predictions"])
 
 @router.post("/", response_model=PredictionResponse)
-def predict_endpoint(
-    db: Session = Depends(get_db),
+async def predict_endpoint(
+    db: AsyncSession = Depends(get_db),
     current_user: models.User = Depends(get_current_user)
 ):
     # 1. Fetch user health profile
-    profile = (
-        db.query(models.UserHealthProfile)
-        .filter(models.UserHealthProfile.user_id == current_user.id)
-        .first()
+    result = await db.execute(
+        select(models.UserHealthProfile).filter(
+            models.UserHealthProfile.user_id == current_user.id
+        )
     )
+    profile = result.scalar_one_or_none()
 
     if not profile:
         raise HTTPException(
@@ -54,7 +57,7 @@ def predict_endpoint(
         "travel_mode": profile.travel_mode,
     }
 
-    # 3. Run the ML model
+    # 3. Run the ML model (synchronous - FastAPI handles in thread pool)
     prediction_label = predict_obesity(user_input)
 
     # 4. Store prediction history
@@ -65,6 +68,7 @@ def predict_endpoint(
     )
 
     db.add(record)
-    db.commit()
+    await db.commit()
 
     return PredictionResponse(obesity_level=prediction_label)
+

@@ -2,14 +2,18 @@
 Utility script to create database tables based on SQLAlchemy models.
 Run this script to sync your database schema with your models.
 """
-from app.db.database import Base, engine
-from app.db.models import User, PredictionHistory, passwordResetToken, UserProfile, UserHealthProfile
+import asyncio
+from app.db.database import engine, Base
+from app.db import models  # Import models to register them
 
-def create_tables():
-    """Create all tables defined in models."""
-    print("Creating database tables...")
-    Base.metadata.create_all(bind=engine)
-    print("✓ All tables created successfully!")
+
+async def create_tables():
+    """Create all database tables"""
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+    print("✅ Tables created successfully")
+    await engine.dispose()
+
 
 if __name__ == "__main__":
-    create_tables()
+    asyncio.run(create_tables())

@@ -1,27 +1,34 @@
-from sqlalchemy import create_engine 
-from sqlalchemy.orm import sessionmaker, declarative_base 
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
+from sqlalchemy.orm import declarative_base
 from app.core.config import settings #type: ignore
 
-# 1) Create the engine (connection to PostgreSQL)
-engine = create_engine(
-    str(settings.DATABASE_URL),
-    echo=True,              # prints SQL queries in terminal (good for dev)
+# DATABASE_URL should be postgresql+psycopg:// in .env for async support
+DATABASE_URL = str(settings.DATABASE_URL)
+
+# 1) Create async engine
+engine = create_async_engine(
+    DATABASE_URL,
+    echo=True,
+    future=True
 )
 
-# 2) Session local for making DB sessions per request
-SessionLocal = sessionmaker(
+# 2) Async session maker
+AsyncSessionLocal = async_sessionmaker(
+    engine,
+    class_=AsyncSession,
+    expire_on_commit=False,
     autocommit=False,
-    autoflush=False,
-    bind=engine
+    autoflush=False
 )
 
 # 3) Base class for all SQLAlchemy models
 Base = declarative_base()
 
-# 4) Dependency: gives a database session to routes
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+# 4) Async dependency: gives a database session to routes
+async def get_db():
+    async with AsyncSessionLocal() as session:
+        try:
+            yield session
+        finally:
+            await session.close()
+

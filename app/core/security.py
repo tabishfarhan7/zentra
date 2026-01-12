@@ -52,9 +52,9 @@ def token_expiry(minutes: int = 15):
 
 
 # -----------------------------
-# 3) Token Blacklisting
+# 3) Token Blacklisting (ASYNC)
 # -----------------------------
-def blacklist_token(token: str):
+async def blacklist_token(token: str):
     payload = jwt.decode(
         token,
         settings.SECRET_KEY,
@@ -68,11 +68,12 @@ def blacklist_token(token: str):
 
     expire_time=exp- int(datetime.utcnow().timestamp())
     if expire_time>0:
-        redis_client.setex(
+        await redis_client.setex(
             name=f"blacklist:{token}",
             time=expire_time,
             value="true"
         )
 
-def is_token_blacklisted(token: str) -> bool:
-    return redis_client.get(f"blacklist:{token}") is not None
+async def is_token_blacklisted(token: str) -> bool:
+    result = await redis_client.get(f"blacklist:{token}")
+    return result is not None
