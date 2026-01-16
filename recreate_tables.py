@@ -36,10 +36,11 @@ if __name__ == "__main__":
     print("\n⚠️  WARNING: This will DELETE ALL existing data!")
     print("All tables will be dropped and recreated with UUID schema.\n")
     
-    response = input("Are you sure you want to continue? (yes/no): ")
+    # response = input("Are you sure you want to continue? (yes/no): ")
     
-    if response.lower() == 'yes':
-        asyncio.run(recreate_tables())
-    else:
-        print("\n❌ Operation cancelled.")
-        sys.exit(0)
+    # if response.lower() == 'yes':
+    #     asyncio.run(recreate_tables())
+    # else:
+    #     print("\n❌ Operation cancelled.")
+    #     sys.exit(0)
+    asyncio.run(recreate_tables())
