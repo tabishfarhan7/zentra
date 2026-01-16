@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional, Literal
+from uuid import UUID
 
 
 # -----------------------------
@@ -82,8 +83,8 @@ class ProfileUpdateRequest(BaseModel):
 # RESPONSE MODEL
 # -----------------------------
 class ProfileResponse(BaseModel):
-    id: int
-    user_id: int
+    id: UUID
+    user_id: UUID
 
     gender: str
     age: float

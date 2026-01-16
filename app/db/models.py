@@ -1,13 +1,15 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, Float
+from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 from .database import Base
 from datetime import datetime
+import uuid
 
 
 class User(Base):
     __tablename__= "users"
     
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True)
     email = Column(String, unique=True, index=True, nullable=False)
     hashed_password = Column(String, nullable=False) 
     predictions = relationship("PredictionHistory", back_populates="user")
@@ -19,8 +21,8 @@ class User(Base):
 class PredictionHistory(Base):
     __tablename__ = "prediction_history"
 
-    id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"))
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True)
+    user_id = Column(UUID(as_uuid=True), ForeignKey("users.id"))
     input_data = Column(String)       # JSON stored as string
     prediction = Column(String)       # predicted obesity level
     created_at = Column(DateTime, default=datetime.utcnow)
@@ -31,8 +33,8 @@ class PredictionHistory(Base):
 class passwordResetToken(Base):
     __tablename__ = "password_reset_tokens"
 
-    id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True)
+    user_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=False)
     token = Column(String, unique=True, index=True, nullable=False)
     expires_at = Column(DateTime, nullable=False)
 
@@ -41,8 +43,8 @@ class passwordResetToken(Base):
 class UserProfile(Base):
     __tablename__ = "user_profile"
 
-    id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), unique=True)
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True)
+    user_id = Column(UUID(as_uuid=True), ForeignKey("users.id", ondelete="CASCADE"), unique=True)
 
     gender = Column(String, nullable=True)
     height_m = Column(Float, nullable=True)
@@ -58,8 +60,8 @@ class UserProfile(Base):
 class UserHealthProfile(Base):
     __tablename__ = "user_health_profiles"
 
-    id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), unique=True)
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True)
+    user_id = Column(UUID(as_uuid=True), ForeignKey("users.id", ondelete="CASCADE"), unique=True)
 
     # Core Info
     gender = Column(String, nullable=True)

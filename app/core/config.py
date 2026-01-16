@@ -18,18 +18,17 @@ class Settings(BaseSettings):
     # Database
     DATABASE_URL: PostgresDsn
 
+    # Redis
+
     class Config:
         env_file = ".env"
         env_file_encoding = "utf-8"
 
-
-    #redis
-    REDIS_HOST: str="localhost"
-    REDIS_PORT: int=6379
-    REDIS_PASSWORD: str = ""  # Optional: Redis password for authentication
+    REDIS_HOST: str = "localhost"
+    REDIS_PORT: int = 6379
+    REDIS_PASSWORD: str = ""
 
     # ML Models
-    MODEL_DOWNLOAD_URL: str = ""  # Optional: URL to download ML models
-
+    MODEL_DOWNLOAD_URL: str = ""
 
 settings = Settings() #type: ignore
