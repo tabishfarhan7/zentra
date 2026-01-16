@@ -1,10 +1,8 @@
-from IPython.terminal.interactiveshell import black_reformat_handler
 import datetime
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
-
 
 from app.db.database import get_db #type: ignore
 from app.schemas.auth import PasswordResetComplete, PasswordResetRequest, Token, UserCreate, UserLogin, UserResponse #type: ignore
@@ -103,6 +101,7 @@ async def reset_password(data: PasswordResetComplete, db: AsyncSession = Depends
     await db.commit()
 
     return {"message": "Password reset successful"}
+
 
 @router.get("/me")
 async def read_current_user(current_user: models.User = Depends(get_current_user)): 
